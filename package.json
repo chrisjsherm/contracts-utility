@@ -2,6 +2,10 @@
   "name": "@chrisjsherm/contracts-utility",
   "version": "1.0.1",
   "description": "Utility functions for processing contract data.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisjsherm/contracts-utility"
+  },
   "main": "./src/utility.js",
   "scripts": {
     "prettier": "prettier --single-quote --trailing-comma es5 --write ./src/**/*.js",
