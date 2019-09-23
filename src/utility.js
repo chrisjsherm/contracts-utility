@@ -64,15 +64,6 @@ class Utility {
       );
     }
 
-    regions.forEach(region => {
-      if (!(region instanceof Region)) {
-        throw new TypeError(
-          'Parameter regions array must contain Region objects. ' +
-            `Invalid array element: ${JSON.stringify(region)}`,
-        );
-      }
-    });
-
     const regionByZipCode = new Map();
     for (const vendor of vendors) {
       // Get region information from memoized Map if we've already
