@@ -57,16 +57,19 @@ class Utility {
       throw new TypeError('Parameter vendors must be of type Array.');
     }
 
-    const regionsErrorMessage =
-      'Parameter regions must be an Array of ' +
-      `Regions. Invalid value: ${JSON.stringify(regions)}.`;
     if (!Array.isArray(regions)) {
-      throw new TypeError(regionsErrorMessage);
+      throw new TypeError(
+        'Parameter regions must be an Array. ' +
+          `Invalid value: ${JSON.stringify(regions)}`,
+      );
     }
 
     regions.forEach(region => {
       if (!(region instanceof Region)) {
-        throw new TypeError(regionsErrorMessage);
+        throw new TypeError(
+          'Parameter regions array must contain Region objects. ' +
+            `Invalid array element: ${JSON.stringify(region)}`,
+        );
       }
     });
 
@@ -76,7 +79,7 @@ class Utility {
       // seen this zip code.
       if (regionByZipCode.has(vendor[this.config.propertySupplierZipCode])) {
         vendor.region = regionByZipCode.get(
-          vendor[this.config.propertySupplierZipCode]
+          vendor[this.config.propertySupplierZipCode],
         ).name;
         continue;
       }
@@ -85,14 +88,14 @@ class Utility {
       const matchingRegion = Region.getMatchingRegion(
         vendor,
         this.config.propertySupplierZipCode,
-        regions
+        regions,
       );
 
       if (matchingRegion) {
         // Memoize the region match.
         regionByZipCode.set(
           vendor[this.config.propertySupplierZipCode],
-          matchingRegion
+          matchingRegion,
         );
 
         // Set the region property on the vendor.
@@ -117,16 +120,16 @@ class Utility {
     if (typeof obj !== 'object' || obj === null) {
       throw new TypeError(
         `Parameter 'obj' must be of type Object. Invalid value: ${JSON.stringify(
-          obj
-        )}`
+          obj,
+        )}`,
       );
     }
 
     if (!Array.isArray(properties)) {
       throw new TypeError(
         `Parameter 'properties' must be an Array of strings. Invalid value: ${JSON.stringify(
-          properties
-        )}`
+          properties,
+        )}`,
       );
     }
 
@@ -134,8 +137,8 @@ class Utility {
       if (typeof prop !== 'string') {
         throw new TypeError(
           `Each property must be a string. Invalid value: ${JSON.stringify(
-            prop
-          )}`
+            prop,
+          )}`,
         );
       }
       obj[prop] = !!obj[prop];
@@ -170,7 +173,7 @@ class Utility {
       throw new TypeError(
         'Parameter vendor must have a property ' +
           this.config.propertyBuyerContact +
-          ' of type {string}.'
+          ' of type {string}.',
       );
     }
 
@@ -180,7 +183,7 @@ class Utility {
     if (!this.config.regexEmailAddress.test(emailAddress)) {
       throw new Error(
         `The value of ${this.config.propertyBuyerContact} ` +
-          `must have a valid email address. Invalid value: ${emailAddress}`
+          `must have a valid email address. Invalid value: ${emailAddress}`,
       );
     }
 
@@ -188,7 +191,7 @@ class Utility {
     if (!this.config.regexPhoneNumber.test(phoneNumber)) {
       throw new Error(
         `The value of ${this.config.propertyBuyerContact} ` +
-          `must have a valid phone number. Invalid value: ${phoneNumber}`
+          `must have a valid phone number. Invalid value: ${phoneNumber}`,
       );
     }
 
