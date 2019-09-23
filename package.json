@@ -1,6 +1,6 @@
 {
   "name": "@chrisjsherm/contracts-utility",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Utility functions for processing contract data.",
   "repository": {
     "type": "git",
