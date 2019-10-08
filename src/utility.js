@@ -76,11 +76,20 @@ class Utility {
       }
 
       // We haven't seen this zip code yet.
-      const matchingRegion = Region.getMatchingRegion(
-        vendor,
-        this.config.propertySupplierZipCode,
-        regions,
-      );
+      let matchingRegion;
+      try {
+        matchingRegion = Region.getMatchingRegion(
+          vendor,
+          this.config.propertySupplierZipCode,
+          regions,
+        );
+      } catch (err) {
+        if (err instanceof TypeError) {
+          console.error(
+            `Error getting matching region: \n${JSON.stringify(err, null, 2)}`,
+          );
+        }
+      }
 
       if (matchingRegion) {
         // Memoize the region match.
